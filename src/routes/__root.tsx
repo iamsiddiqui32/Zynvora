@@ -17,7 +17,7 @@ import { BackToTop } from "../components/aniflix/BackToTop";
 import { ScrollProgress } from "../components/aniflix/ScrollProgress";
 import { PlayerProvider } from "../components/aniflix/MoviePlayer";
 import { Toaster } from "sonner";
-import zynvora from "../assets/zynvora.png.asset.json";
+import zynvora from "../assets/zynvora.png";
 
 function NotFoundComponent() {
   return (
@@ -84,14 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Stream beyond imagination — premium animated cinema." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Zynvora" },
-      { property: "og:image", content: zynvora.url },
+      { property: "og:image", content: zynvora},
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: zynvora.url },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: zynvora.url },
-      { rel: "apple-touch-icon", href: zynvora.url },
+      { rel: "icon", type: "image/png", href: zynvora},
+      { rel: "apple-touch-icon", href: zynvora },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
