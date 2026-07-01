@@ -76,6 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "NJB2Iprd7o-MLdNxzxMRY90UuQ8OMM3qHMVgfGZMW9I" },
       { title: "Zynvora — Stream Beyond Imagination" },
       { name: "description", content: "Zynvora is a premium animated cinema platform. Stream curated animated films in-app with a Netflix-grade experience." },
       { name: "author", content: "Abdullah Siddiqui" },
