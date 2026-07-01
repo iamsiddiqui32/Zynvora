@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Zynvora" },
       { property: "og:image", content: zynvora},
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: zynvora.url },
+      { name: "twitter:image", content: zynvora},
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -112,6 +112,25 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <head>
+  <HeadContent />
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-L00BQ8GZT6"
+  />
+
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-L00BQ8GZT6');
+      `,
+    }}
+  />
+</head>
       </head>
       <body>
         {children}
