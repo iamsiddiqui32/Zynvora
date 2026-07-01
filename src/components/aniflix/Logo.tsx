@@ -1,5 +1,4 @@
-import zynvora from "@/assets/zynvora.png.asset.json";
-
+import zynvora from "@/assets/zynvora.png";
 export function Logo({
   size = 36,
   withWordmark = true,
@@ -12,7 +11,7 @@ export function Logo({
   return (
     <span className={`inline-flex items-center gap-2 ${className}`}>
       <img
-        src={zynvora.url}
+        src={zynvora}
         alt="Zynvora"
         width={size}
         height={size}
