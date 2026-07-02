@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -17,8 +17,10 @@ import { BackToTop } from "../components/aniflix/BackToTop";
 import { ScrollProgress } from "../components/aniflix/ScrollProgress";
 import { PlayerProvider } from "../components/aniflix/MoviePlayer";
 import { Toaster } from "sonner";
+import { LoadingScreen } from "../components/aniflix/LoadingScreen";
 import zynvora from "../assets/zynvora.png";
 
+/* -------------------- 404 PAGE -------------------- */
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -41,9 +43,11 @@ function NotFoundComponent() {
   );
 }
 
+/* -------------------- ERROR PAGE -------------------- */
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -57,7 +61,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-md bg-gold px-4 py-2 text-sm font-semibold text-primary-foreground hover:brightness-110"
           >
             Try again
@@ -71,6 +78,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+/* -------------------- ROUTE -------------------- */
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -78,27 +86,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google-site-verification", content: "NJB2Iprd7o-MLdNxzxMRY90UuQ8OMM3qHMVgfGZMW9I" },
       { title: "Zynvora — Stream Beyond Imagination" },
-      { name: "description", content: "Zynvora is a premium animated cinema platform. Stream curated animated films in-app with a Netflix-grade experience." },
+      { name: "description", content: "Zynvora is a premium animated cinema platform." },
       { name: "author", content: "Abdullah Siddiqui" },
       { name: "theme-color", content: "#000000" },
       { property: "og:title", content: "Zynvora" },
-      { property: "og:description", content: "Stream beyond imagination — premium animated cinema." },
+      { property: "og:description", content: "Stream beyond imagination." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Zynvora" },
-      { property: "og:image", content: zynvora},
+      { property: "og:image", content: zynvora },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: zynvora},
+      { name: "twitter:image", content: zynvora },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: zynvora},
-      { rel: "apple-touch-icon", href: zynvora },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap",
-      },
+      { rel: "icon", type: "image/png", href: zynvora },
     ],
   }),
   shellComponent: RootShell,
@@ -106,17 +106,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
+
+/* -------------------- SHELL -------------------- */
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
-
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-L00BQ8GZT6"
-        />
-
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L00BQ8GZT6" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -138,9 +135,19 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-
+/* -------------------- ROOT COMPONENT (WITH LOADER) -------------------- */
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
