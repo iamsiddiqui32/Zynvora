@@ -45,25 +45,20 @@ export function Footer() {
 
           {/* Footer Navigation */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
-            <Link
-              to="/contact"
-              className="transition hover:text-gold"
-            >
+            <Link to="/contact" className="transition hover:text-gold">
               Contact
             </Link>
 
-            <Link
-              to="/privacy"
-              className="transition hover:text-gold"
-            >
+            <Link to="/privacy" className="transition hover:text-gold">
               Privacy Policy
             </Link>
 
-            <Link
-              to="/terms"
-              className="transition hover:text-gold"
-            >
+            <Link to="/terms" className="transition hover:text-gold">
               Terms & Conditions
+            </Link>
+
+            <Link to="/disclaimer" className="transition hover:text-gold">
+              Disclaimer
             </Link>
           </div>
 
