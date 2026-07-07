@@ -1,12 +1,19 @@
 import { motion } from "framer-motion";
-import { FaYoutube, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 
 const socials = [
-  { icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@iamsiddiqui32" },
-  { icon: FaFacebookF, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61560559612747" },
-  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/iamsiddiqui32/" },
-  { icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/abdullah-siddiqui-123970304/?skipRedirect=true" },
+  {
+    icon: FaFacebookF,
+    label: "Facebook",
+    href: "https://www.facebook.com/zynvoraofficial",
+  },
+  {
+    icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/zynvoraofficial/",
+  },
 ];
 
 export function Footer() {
@@ -26,14 +33,42 @@ export function Footer() {
           <div className="flex justify-center">
             <Logo size={56} />
           </div>
+
           <p className="mt-2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
             Stream Beyond Imagination
           </p>
+
           <p className="mt-2 text-sm text-muted-foreground">
-            A premium animated cinema destination — curated favorites, streamed in-app.
+            A premium animated cinema destination — curated favorites, streamed
+            in-app.
           </p>
 
-          <ul className="mt-6 flex items-center justify-center gap-4">
+          {/* Footer Navigation */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
+            <Link
+              to="/contact"
+              className="transition hover:text-gold"
+            >
+              Contact
+            </Link>
+
+            <Link
+              to="/privacy"
+              className="transition hover:text-gold"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              to="/terms"
+              className="transition hover:text-gold"
+            >
+              Terms & Conditions
+            </Link>
+          </div>
+
+          {/* Social Media */}
+          <ul className="mt-8 flex items-center justify-center gap-4">
             {socials.map(({ icon: Icon, label, href }) => (
               <li key={label}>
                 <motion.a
@@ -45,7 +80,7 @@ export function Footer() {
                   whileTap={{ scale: 0.95 }}
                   className="grid h-11 w-11 place-items-center rounded-full glass text-foreground transition hover:text-gold hover:glow-gold"
                 >
-                  <Icon />
+                  <Icon size={18} />
                 </motion.a>
               </li>
             ))}
@@ -54,6 +89,7 @@ export function Footer() {
           <p className="mt-8 text-sm text-muted-foreground">
             © 2026 Zynvora. All Rights Reserved.
           </p>
+
           <p
             className="mt-1 text-sm font-medium text-gold"
             style={{ textShadow: "0 0 12px var(--gold-soft)" }}
