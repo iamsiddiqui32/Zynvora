@@ -19,6 +19,8 @@ export const Route = createFileRoute("/")({
         content:
           "Zynvora, animated movies, anime, cartoons, fantasy movies, streaming",
       },
+
+      // Open Graph
       {
         property: "og:title",
         content: "Zynvora — Stream Beyond Imagination",
@@ -31,6 +33,45 @@ export const Route = createFileRoute("/")({
       {
         property: "og:type",
         content: "website",
+      },
+      {
+        property: "og:url",
+        content: "https://zynvora.vercel.app/",
+      },
+      {
+        property: "og:image",
+        content: "https://zynvora.vercel.app/zynvora-og.jpg",
+      },
+      {
+        property: "og:image:width",
+        content: "1200",
+      },
+      {
+        property: "og:image:height",
+        content: "630",
+      },
+      {
+        property: "og:image:alt",
+        content: "Zynvora — Stream Beyond Imagination",
+      },
+
+      // Twitter / X
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "Zynvora — Stream Beyond Imagination",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Explore the best animated movies and anime with Zynvora's fast, modern, and immersive streaming experience.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://zynvora.vercel.app/zynvora-og.jpg",
       },
     ],
   }),
