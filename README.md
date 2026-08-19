@@ -53,13 +53,13 @@ Visit Zynvora:
 ### Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/iamsiddiqui32/Zynvora.git
 ```
 
 ### Navigate to the project
 
 ```bash
-cd YOUR_REPOSITORY_NAME
+cd Zynvora
 ```
 
 ### Install dependencies
